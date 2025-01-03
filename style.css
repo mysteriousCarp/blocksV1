@@ -1,14 +1,28 @@
 .block {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    position: absolute;
-    cursor: move;
-  }
-
-.hitbox {
-  width: 50px;
+  width: 100px;
   height: 100px;
-  left: 100px;
+  background-color: lightblue;
   position: absolute;
+  cursor: move;
+  border-radius: 10px; /* Края скруглены */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.384); /* Тени */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 0; /* Добавляем базовый индекс */
+}
+
+.block:hover {
+  transform: scale(1.05); /* Немного увеличиваем объект */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.633); 
+  z-index: 10; /* Поднимаем на передний план */
+}
+
+.blockinput
+{
+  padding: 5px;
+}
+.hitbox {
+width: 50px;
+height: 100px;
+left: 100px;
+position: absolute;
 }
