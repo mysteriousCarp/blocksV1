@@ -128,7 +128,8 @@ class Block {
       for (const block of blocks) {
         if (block.id !== that.id && block.contact(e, that.size)) {
           const parentCoords = block.getAbsoluteCoordinates();
-          that.moveByRelative(that.element, block.size, 0); // Относительный сдвиг
+          const rect = block.getAbsoluteCoordinates();
+          that.moveByRelative(that.element, rect.x + block.size, rect.y); // Относительный сдвиг
           block.kids.push(that);
           that.parent = block;
           break;
