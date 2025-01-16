@@ -213,7 +213,7 @@ class Block {
     const that = this;
     requestAnimationFrame(function () {
       for (const block of blocks) {
-        if (block.id !== that.id && block.contact(block)) {
+        if (block.id !== that.id && block.contact(block, e)) {
           that.connect(block)
           break;
         }
@@ -233,24 +233,11 @@ class Block {
  * @param {Block} block 
  * @returns {boolean}
  */
-  contact(block) {
-    const thiscord = this.getAbsoluteCoordinates()
-    const othercord = block.getAbsoluteCoordinates()
-    const square1 = [
-      [thiscord.x, thiscord.y],
-      [thiscord.x + this.size, thiscord.y],
-      [thiscord.x + this.size, thiscord.y + 100],
-      [thiscord.x, thiscord.y + 100]
-    ]
-    const square2 = [
-      [othercord.x - 1, othercord.y],
-      [othercord.x + widhtHitbox, othercord.y],
-      [othercord.x + widhtHitbox, othercord.y + 100],
-      [othercord.x, othercord.y + 100]
-    ]
-    console.log(square1)
-    console.log(square2)
-    return checkSquaresIntersection(square1, square2)
+    contact(e, size) {
+    const rect = this.element.getBoundingClientRect();
+
+    return (e.clientX >= rect.left + hitboxSize && e.clientX <= rect.right + hitboxSize &&
+      e.clientY >= rect.top && e.clientY <= rect.bottom);
   }
 }
 
